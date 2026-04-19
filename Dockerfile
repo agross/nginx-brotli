@@ -1,5 +1,5 @@
 # renovate: docker=nginx
-ARG NGINX_VERSION=1.27.1-alpine-slim
+ARG NGINX_VERSION=1.30.0-alpine-slim
 
 FROM nginx:${NGINX_VERSION} AS nginx-builder
 
