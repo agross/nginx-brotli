@@ -59,7 +59,7 @@ RUN mkdir /so-deps && \
            tr '\n' ' ') \
        /so-deps
 
-# 3. Build customized nginx with Brotli module copied from nginx-builder.
+# Build customized nginx with Brotli module copied from nginx-builder.
 FROM nginx:${NGINX_VERSION} AS runtime
 
 # Update all packages.
