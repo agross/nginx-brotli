@@ -20,7 +20,7 @@ jobs:
 
     env:
       # renovate: docker=nginx
-      NGINX_VERSION: 1.27.1-alpine-slim
+      NGINX_VERSION: 1.27.5-alpine-slim
 
     steps:
       - name: Get latest code
