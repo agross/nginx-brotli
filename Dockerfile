@@ -11,10 +11,14 @@ RUN curl --fail \
          --location \
          --output nginx.tar.gz \
          "http://nginx.org/download/nginx-${NGINX_VERSION%%-*}.tar.gz"
+# renovate: git-refs=https://github.com/google/ngx_brotli.git
+ARG NGX_BROTLI_COMMIT=master@a71f9312c2deb28875acc7bacfdd5695a111aa53
+
 RUN git clone \
-        --recursive \
         https://github.com/google/ngx_brotli.git \
-        "$NGX_MODULE_PATH"
+        "$NGX_MODULE_PATH" && \
+    git -C "$NGX_MODULE_PATH" checkout "${NGX_BROTLI_COMMIT#*@}" && \
+    git -C "$NGX_MODULE_PATH" submodule update --init --recursive
 
 # For latest build deps see
 # https://github.com/nginxinc/docker-nginx/blob/master/mainline/alpine/Dockerfile

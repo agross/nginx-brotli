@@ -17,13 +17,27 @@
       customType: 'regex',
       managerFilePatterns: [
         '/(^|/).+\\.ya?ml$/',
+        '/(^|/)Dockerfile$/',
       ],
       matchStrings: [
-        '# renovate: (?<datasource>[a-z-.]+?)=(?<packageName>.+?)(?: depName=(?<depName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s.+?\\w+?[:=]\\s*(?<currentValue>.+?)\\s',
+        '# renovate: (?<datasource>[a-z-.]+?)=(?<packageName>.+?)(?: depName=(?<depName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s.+?\\w+?[:=]\\s*(?<currentValue>.+?)(?:@(?<currentDigest>[a-f0-9]{40}))?\\s',
       ],
     },
   ],
   packageRules: [
+    {
+      description: 'Update ngx_brotli commit pin',
+      matchDatasources: [
+        'git-refs',
+      ],
+      matchPackageNames: [
+        'https://github.com/google/ngx_brotli.git',
+      ],
+      matchUpdateTypes: [
+        'digest',
+      ],
+      enabled: true,
+    },
     {
       description: 'Group Docker-related GitHub Actions',
       matchManagers: [
