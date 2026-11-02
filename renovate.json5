@@ -13,11 +13,20 @@
   ],
   customManagers: [
     {
+      description: 'Dockerfile Git commit pins (track HEAD)',
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)Dockerfile$/',
+      ],
+      matchStrings: [
+        '# renovate: (?<datasource>git-refs)=(?<packageName>[^\\s]+)[ \\t]*\\r?\\nARG \\w+=(?<currentDigest>[a-f0-9]{40})\\s',
+      ],
+    },
+    {
       description: 'Magic comments',
       customType: 'regex',
       managerFilePatterns: [
         '/(^|/).+\\.ya?ml$/',
-        '/(^|/)Dockerfile$/',
       ],
       matchStrings: [
         '# renovate: (?<datasource>[a-z-.]+?)=(?<packageName>.+?)(?: depName=(?<depName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s.+?\\w+?[:=]\\s*(?<currentValue>.+?)(?:@(?<currentDigest>[a-f0-9]{40}))?\\s',

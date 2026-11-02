@@ -12,12 +12,12 @@ RUN curl --fail \
          --output nginx.tar.gz \
          "http://nginx.org/download/nginx-${NGINX_VERSION%%-*}.tar.gz"
 # renovate: git-refs=https://github.com/google/ngx_brotli.git
-ARG NGX_BROTLI_COMMIT=master@53e0fb55f250f48fe80c0ddbf6c0f7103cdbaae1
+ARG NGX_BROTLI_COMMIT=53e0fb55f250f48fe80c0ddbf6c0f7103cdbaae1
 
 RUN git clone \
         https://github.com/google/ngx_brotli.git \
         "$NGX_MODULE_PATH" && \
-    git -C "$NGX_MODULE_PATH" checkout "${NGX_BROTLI_COMMIT#*@}" && \
+    git -C "$NGX_MODULE_PATH" checkout "$NGX_BROTLI_COMMIT" && \
     git -C "$NGX_MODULE_PATH" submodule update --init --recursive
 
 # For latest build deps see
