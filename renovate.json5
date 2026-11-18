@@ -8,6 +8,8 @@
     ':rebaseStalePrs',
     ':semanticCommitsDisabled',
   ],
+  automerge: true,
+  automergeType: 'branch',
   labels: [
     'dependencies',
   ],
